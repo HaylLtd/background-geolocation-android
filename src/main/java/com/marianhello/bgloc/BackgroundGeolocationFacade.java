@@ -57,6 +57,13 @@ public class BackgroundGeolocationFacade {
             Manifest.permission.ACCESS_FINE_LOCATION
     };
 
+    public static final String[] PERMISSIONS10 = {
+        Manifest.permission.ACCESS_COARSE_LOCATION,
+        Manifest.permission.ACCESS_FINE_LOCATION,
+        Manifest.permission.ACCESS_BACKGROUND_LOCATION
+    };
+    private String[] PERMISSIONSNEW = PERMISSIONS;
+
     private boolean mServiceBroadcastReceiverRegistered = false;
     private boolean mLocationModeChangeReceiverRegistered = false;
     private boolean mIsPaused = false;
@@ -212,10 +219,14 @@ public class BackgroundGeolocationFacade {
     }
 
     public void start() {
-        logger.debug("Starting service");
-
+        if(android.os.Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
+            PERMISSIONSNEW = PERMISSIONS;
+        }else {
+            PERMISSIONSNEW = PERMISSIONS10;
+        }
+            logger.debug("Starting service");
         PermissionManager permissionManager = PermissionManager.getInstance(getContext());
-        permissionManager.checkPermissions(Arrays.asList(PERMISSIONS), new PermissionManager.PermissionRequestListener() {
+        permissionManager.checkPermissions(Arrays.asList(PERMISSIONSNEW), new PermissionManager.PermissionRequestListener() {
             @Override
             public void onPermissionGranted() {
                 logger.info("User granted requested permissions");
