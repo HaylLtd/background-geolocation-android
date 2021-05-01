@@ -1,6 +1,6 @@
-Background Geolocation for Android
+*This project has been archived, and the files moved into the main repository for [cordova-background-geolocation-plugin](https://github.com/HaylLtd/cordova-background-geolocation-plugin)*
 
-[![CircleCI](https://circleci.com/gh/mauron85/background-geolocation-android/tree/master.svg?style=shield)](https://circleci.com/gh/mauron85/background-geolocation-android/tree/master)
+Background Geolocation for Android
 
 used by:
 
